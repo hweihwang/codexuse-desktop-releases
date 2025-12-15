@@ -4,7 +4,7 @@ Official downloads for CodexUse.
 
 CodexUse is a desktop companion for AI coding CLIs. It helps you keep multiple accounts logged in, switch profiles fast, and avoid rate limit surprises.
 
-This repo only hosts release artifacts and changelogs. It does not contain the app source code.
+This repo hosts download artifacts. It does not contain the app source code.
 
 ## Download
 
@@ -35,11 +35,6 @@ If macOS blocks the app, right-click the app and choose Open once.
 1. Download the `.AppImage` from the latest release.
 2. Make it executable: `chmod +x CodexUse-linux-*.AppImage`
 3. Run it: `./CodexUse-linux-*.AppImage`
-
-## Changelog
-
-- Release notes (canonical): https://github.com/hweihwang/codexuse-desktop-releases/releases
-- Changelog file (mirror): `CHANGELOG.md`
 
 ## Links
 

@@ -38,8 +38,8 @@ If macOS blocks the app, right-click the app and choose Open once.
 
 ## Changelog
 
-- See `CHANGELOG.md` for release notes.
-- Full release history: https://github.com/hweihwang/codexuse-desktop-releases/releases
+- Release notes (canonical): https://github.com/hweihwang/codexuse-desktop-releases/releases
+- Changelog file (mirror): `CHANGELOG.md`
 
 ## Links
 

@@ -1,42 +1,42 @@
 # CodexUse Desktop Releases
 
-Official downloads for **CodexUse** — the local control plane for the Codex app and Codex CLI.
+Plan with your best model. Build with the right model.
 
-One cockpit for every Codex account: switch accounts without re-auth, watch live rate-limit headroom, orchestrate Codex App windows, and pool quota across accounts behind one local API.
+CodexUse is an independent Apple Silicon Mac app for the Codex app and Codex CLI. It keeps every Codex account in its own window, runs planner and worker jobs in isolated Git worktrees, and lets you review before anything merges. This repository contains public download artifacts, not the app source. CodexUse is not affiliated with OpenAI.
 
-This repo hosts download artifacts only. It does not contain the app source.
+## Download and install
 
-## Download
+1. Open Apple menu → About This Mac. The desktop app requires an Apple Silicon chip. Intel Mac, Windows, and Linux desktop builds are not shipped.
+2. On an Apple Silicon Mac, download the DMG from the [latest release](https://github.com/hweihwang/codexuse-desktop-releases/releases/latest), or run `brew install --cask hweihwang/codexuse/codexuse`.
+3. For a DMG install, open the image and drag CodexUse into Applications. Open CodexUse. If macOS reports a damaged or unverified download, stop and use the [troubleshooting guide](https://codexuse.com/docs/troubleshooting/). Do not disable macOS security checks.
 
-- **Latest release:** https://github.com/hweihwang/codexuse-desktop-releases/releases/latest
-- **macOS (Apple Silicon):** https://github.com/hweihwang/codexuse-desktop-releases/releases/latest/download/stable-macos-arm64-CodexUse.dmg
-- **Homebrew:** `brew install --cask hweihwang/codexuse/codexuse`
-- **CLI (optional):** `npm install -g codexuse-cli`
+Homebrew installs update with `brew upgrade --cask codexuse`, not the in-app updater.
 
-macOS on Apple Silicon. Intel Mac and Linux desktop builds are not shipped.
+Not sure which Mac you have? Read the [desktop guide](https://codexuse.com/docs/desktop/). The separate [CLI](https://codexuse.com/docs/cli/) runs on macOS, Windows, and Linux: `npm install -g codexuse-cli`. The CLI does not provide desktop feature parity.
 
-## What you get
+## What CodexUse does
 
-- **Codex App orchestration** — launch, focus, stop, and restart profile-matched Codex App windows from one cockpit.
-- **Account switching without re-auth** — keep personal, work, and client profiles signed in locally; switch from the window, tray, or CLI.
-- **Live rate-limit headroom** — usage and reset windows per account, so you switch before a 429.
-- **Auto-roll (Pro)** — roll to an eligible profile when an account runs low, behind a confirm guardrail.
-- **Accounts Pool (Pro)** — one local OpenAI-compatible API that shares quota across selected accounts with load-balancing and failover.
-- **Telegram alerts and manual cloud sync (Pro).**
-- **Local-first** — profiles, settings, and state stay on your machine. CodexUse signs in with the Codex CLI OAuth login and needs no API keys of its own.
+- **Work.** Describe a task, pick a folder, a planner account, and a worker account. The planner plans in its own Codex window. The worker builds in an isolated Git worktree and receives a bounded brief. You review and accept; nothing merges without you. Work is not `codex agents` and does not replace it.
+- **One Codex window per account.** Every OpenAI or custom-model account has one window. Open starts it, Show brings it to the front. CodexUse never opens a second window for the same account and never signs another account out.
+- **Headroom, refill timers, Auto-roll.** See 5-hour, 7-day, and 30-day headroom per account. Refill timers reopen an account when its quota refills. Auto-roll rolls new work to another account below a threshold you set; it does not move a running conversation.
+- **Custom-model accounts.** Run OpenRouter, DeepSeek, Groq, or a local model inside the Codex app as its own account. Provider usage is billed by the provider; hosted ChatGPT features such as dictation are unavailable on those accounts.
+- **Account Pool.** One local OpenAI-compatible API across selected accounts, with load balancing and failover. It is not a hosted service and does not raise any account's limit.
+- **Telegram and Cloud Sync.** Telegram remote for tasks, and manual passphrase-encrypted Cloud Sync for accounts and settings. Cloud Sync does not upload run state or conversation history.
 
-Free covers 2 profiles, account switching, Codex App orchestration, and live headroom. Pro ($19.50 lifetime) adds Accounts Pool, auto-roll, unlimited profiles, Telegram alerts, MCP & Skills installs, and cloud sync.
+OpenAI accounts sign in with the Codex CLI OAuth flow and need no OpenAI API key. Custom-model accounts use your provider credential, stored in the macOS Keychain. MCP and Skills installers are not included.
 
-## Install (macOS)
+## Trial and Pro
 
-1. Download the `.dmg` from the latest release, or run `brew install --cask hweihwang/codexuse/codexuse`.
-2. Open it, then drag CodexUse into Applications.
-3. Launch CodexUse. If macOS blocks it, right-click the app and choose Open once.
+Try every app feature for 7 days. Then features lock until a Pro license is activated. Nothing is deleted. There is no permanent free tier.
 
-Homebrew installs upgrade with `brew upgrade --cask codexuse` (not the in-app updater).
+Pro is a one-time lifetime license: $39 regular price, currently $19.50 with SUMMER50. One license supports up to 5 Macs. There is a 30-day refund window. Account quotas and provider charges remain separate.
+
+Buy inside CodexUse to enable automatic activation. If you buy on the website, enter the license key from your Gumroad receipt in CodexUse. If you already paid, do not buy again.
 
 ## Links
 
-- Website: https://codexuse.com
-- Docs: https://codexuse.com/docs/
-- Support: https://github.com/hweihwang/codexuse-desktop-releases/issues
+- [Website](https://codexuse.com/)
+- [Getting started](https://codexuse.com/docs/getting-started/)
+- [Work](https://codexuse.com/docs/work/) · [Accounts](https://codexuse.com/docs/accounts/)
+- [Documentation](https://codexuse.com/docs/)
+- [Support](https://github.com/hweihwang/codexuse-desktop-releases/issues)

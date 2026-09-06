@@ -2,7 +2,7 @@
 
 Plan with your best model. Build with the right model.
 
-CodexUse is an independent Apple Silicon Mac app for the Codex app and Codex CLI. It keeps every Codex account in its own window, runs planner and worker jobs in isolated Git worktrees, and lets you review before anything merges. This repository contains public download artifacts, not the app source. CodexUse is not affiliated with OpenAI.
+CodexUse is an independent Apple Silicon Mac app for the Codex app and Codex CLI. It keeps every Codex account in its own window, runs planners in their own Codex windows and workers in isolated Git worktrees, and lets you review before anything merges. This repository contains public download artifacts, not the app source. CodexUse is not affiliated with OpenAI.
 
 ## Download and install
 
@@ -16,9 +16,9 @@ Not sure which Mac you have? Read the [desktop guide](https://codexuse.com/docs/
 
 ## What CodexUse does
 
-- **Work.** Describe a task, pick a folder, a planner account, and a worker account. The planner plans in its own Codex window. The worker builds in an isolated Git worktree and receives a bounded brief. You review and accept; nothing merges without you. Work is not `codex agents` and does not replace it.
+- **Work.** Describe a task, pick a folder and separate planner and worker accounts. The planner plans in its own Codex window. The worker builds in an isolated Git worktree and receives a bounded brief. Review and apply the changes to your working folder; you commit and push them yourself. Work does not replace native Codex subagents.
 - **One Codex window per account.** Every OpenAI or custom-model account has one window. Open starts it, Show brings it to the front. CodexUse never opens a second window for the same account and never signs another account out.
-- **Headroom, refill timers, Auto-roll.** See 5-hour, 7-day, and 30-day headroom per account. Refill timers reopen an account when its quota refills. Auto-roll rolls new work to another account below a threshold you set; it does not move a running conversation.
+- **Headroom, refill timers, Auto-roll.** See the usage windows and refill times Codex reports. Refill controls attempt short background requests; they do not add quota or accelerate refill times. Auto-roll can open another eligible account below a threshold you set; it does not move a running conversation.
 - **Custom-model accounts.** Run OpenRouter, DeepSeek, Groq, or a local model inside the Codex app as its own account. Provider usage is billed by the provider; hosted ChatGPT features such as dictation are unavailable on those accounts.
 - **Account Pool.** One local OpenAI-compatible API across selected accounts, with load balancing and failover. It is not a hosted service and does not raise any account's limit.
 - **Telegram and Cloud Sync.** Telegram remote for tasks, and manual passphrase-encrypted Cloud Sync for accounts and settings. Cloud Sync does not upload run state or conversation history.

@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://codexuse.com">
-    <img src=".github/assets/banner.png" width="880" alt="CodexUse. Plan with your best model. Build with the right model.">
+    <img src=".github/assets/banner.png" width="880" alt="CodexUse. Every Codex account. One app.">
   </a>
 </p>
 
@@ -19,33 +19,17 @@
   <a href="https://codexuse.com/docs/"><b>Docs</b></a>
 </p>
 
-CodexUse is a desktop app for people who use the Codex app and the Codex CLI with more than one account. Every account keeps its own Codex home. On a Mac, one account plans a task in its own Codex window, another account builds it in an isolated Git worktree, and you review the diff before you accept it.
+CodexUse is a desktop app for people who use the Codex app and the Codex CLI with more than one account. Every account keeps its own Codex home, and on a Mac its own Codex window. Every local Codex task from every account shows up in one History.
 
 This repository holds the public downloads and the issue tracker. It does not contain the app source. CodexUse is independent and not affiliated with OpenAI.
 
 <p align="center">
   <a href="https://codexuse.com/#film">
-    <img src=".github/assets/film-poster.jpg" width="880" alt="Watch the one-minute CodexUse film">
+    <img src=".github/assets/film-poster.jpg" width="880" alt="Watch the CodexUse film">
   </a>
   <br>
-  <sub><a href="https://codexuse.com/#film">Watch the one-minute film</a></sub>
+  <sub><a href="https://codexuse.com/#film">Watch the film</a></sub>
 </p>
-
-## Work: plan on one account, build on another
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/work-dark.png">
-  <img src=".github/assets/work-light.png" width="880" alt="CodexUse Work: the planner has finished, two worker accounts build in separate Git worktrees, and the result waits for review.">
-</picture>
-
-Describe the task, pick a folder, and choose separate planner and worker accounts. The planner plans in its own Codex window. Each worker builds in an isolated Git worktree with a bounded brief and runs your checks. Work needs macOS.
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset=".github/assets/review-dark.png">
-  <img src=".github/assets/review-light.png" width="880" alt="CodexUse review: the changed files of a finished job, the diff, and passing checks.">
-</picture>
-
-Read the diff and the check results, then accept. Accept applies the changes to your working folder; you commit and push them yourself. Work does not replace Codex subagents.
 
 ## Accounts: every account in its own home
 
@@ -58,6 +42,7 @@ Read the diff and the check results, then accept. Accept applies the changes to 
 - **Status in one word:** Open, Busy, Ready, Low, Needs sign-in, Needs setup.
 - **Headroom and refill timers** as Codex reports them. Refill controls attempt short background requests; they do not add quota or speed up refill times.
 - **Auto-roll** on macOS moves new work to the next account below a threshold you set. It does not move a running conversation.
+- **History** lists every local Codex task from every account and opens each one in the account that owns it.
 - **Shared Codex defaults** with small per-account overrides.
 
 ## More than OpenAI logins
@@ -91,7 +76,7 @@ On macOS, open the disk image and drag CodexUse into Applications. If macOS repo
 | Separate accounts, each in its own Codex home | ✓ | ✓ | ✓ |
 | ChatGPT Web and custom-model accounts | ✓ | ✓ | ✓ |
 | Headroom, refill timers, History, Account Pool, Cloud Sync | ✓ | ✓ | ✓ |
-| One Codex window per account, Work, Auto-roll, Telegram | ✓ | | |
+| One Codex window per account, Auto-roll, Telegram | ✓ | | |
 | Computer Use for agents | ✓ | | |
 
 The features marked macOS only drive OpenAI's Codex app or ChatGPT Desktop for Mac. The separate [CLI](https://codexuse.com/docs/cli/) runs on all three platforms with `npm install -g codexuse-cli`; it does not have every desktop feature.
@@ -108,4 +93,4 @@ Buy inside CodexUse to activate automatically. If you buy on the website, enter 
 
 ## Links
 
-[Website](https://codexuse.com/) · [Getting started](https://codexuse.com/docs/getting-started/) · [Work](https://codexuse.com/docs/work/) · [Accounts](https://codexuse.com/docs/accounts/) · [Platforms](https://codexuse.com/docs/desktop/) · [Release notes](https://codexuse.com/releases/) · [Report an issue](https://github.com/hweihwang/codexuse-desktop-releases/issues)
+[Website](https://codexuse.com/) · [Getting started](https://codexuse.com/docs/getting-started/) · [Accounts](https://codexuse.com/docs/accounts/) · [Platforms](https://codexuse.com/docs/desktop/) · [Release notes](https://codexuse.com/releases/) · [Report an issue](https://github.com/hweihwang/codexuse-desktop-releases/issues)

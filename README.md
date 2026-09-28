@@ -73,7 +73,7 @@ Read the diff and the check results, then accept. Accept applies the changes to 
   <img src=".github/assets/computer-use-light.png" width="880" alt="CodexUse Settings, Computer Use: the runtime is ready and the server is added to Claude Code and OMP.">
 </picture>
 
-Claude Code, OMP, and other MCP agents can control Mac apps, and Chrome, Edge, or Brave, through the Computer Use runtime in ChatGPT Desktop. Their own model decides every action, and CodexUse asks before an agent controls a new app or site. It needs macOS. This is not an official OpenAI integration, and the runtime can change with any ChatGPT update.
+Claude Code, OMP, and other MCP agents can control Mac apps, and Chrome, Edge, or Brave, through the Computer Use runtime in ChatGPT Desktop. Their own model decides every action, and CodexUse approves each app and site for them, so there are no approval prompts. Add the server only to agents you trust. It needs macOS. This is not an official OpenAI integration, and the runtime can change with any ChatGPT update.
 
 ## Download and install
 

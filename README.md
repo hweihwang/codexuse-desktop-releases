@@ -19,7 +19,7 @@
   <a href="https://codexuse.com/docs/"><b>Docs</b></a>
 </p>
 
-CodexUse is a desktop app for people who use the Codex app and the Codex CLI with more than one account. Every account keeps its own Codex home, and on a Mac its own Codex window. Every local Codex task from every account shows up in one History.
+CodexUse is a desktop app for people who use the Codex app and the Codex CLI with more than one account. Every account keeps its own Codex home, and on a Mac its own Codex window. On a Mac, Find task searches local Codex tasks across every account.
 
 This repository holds the public downloads and the issue tracker. It does not contain the app source. CodexUse is independent and not affiliated with OpenAI.
 
@@ -42,7 +42,7 @@ This repository holds the public downloads and the issue tracker. It does not co
 - **Status in one word:** Open, Busy, Ready, Low, Needs sign-in, Needs setup.
 - **Headroom and refill timers** as Codex reports them. Refill controls attempt short background requests; they do not add quota or speed up refill times.
 - **Auto-roll** on macOS moves new work to the next account below a threshold you set. It does not move a running conversation.
-- **History** lists every local Codex task from every account and opens each one in the account that owns it.
+- **Find task** on macOS searches local Codex tasks across accounts and opens each one in the account that owns it.
 - **Shared Codex defaults** with small per-account overrides.
 
 ## More than OpenAI logins
@@ -58,7 +58,7 @@ This repository holds the public downloads and the issue tracker. It does not co
   <img src=".github/assets/computer-use-light.png" width="880" alt="CodexUse Settings, Computer Use: the runtime is ready and the server is added to Claude Code and OMP.">
 </picture>
 
-Claude Code, OMP, and other MCP agents can control Mac apps, and Chrome, Edge, or Brave, through the Computer Use runtime in ChatGPT Desktop. Their own model decides every action, and CodexUse approves each app and site for them, so there are no approval prompts. Add the server only to agents you trust. It needs macOS. This is not an official OpenAI integration, and the runtime can change with any ChatGPT update.
+Claude Code, OMP, and other MCP agents can control Mac apps through OpenAI's Computer Use runtime, and open websites in CodexUse's agent browser: Google Chrome with its own profile, running in the background so it never touches your windows. Import cookies from your browser so agents start signed in. Their own model decides every action, and CodexUse approves each app and site for them, so there are no approval prompts. Add the server only to agents you trust. Settings → Computer Use installs the runtime, copying it from ChatGPT or Codex Desktop when you have one. It needs Apple Silicon macOS, and Google Chrome for websites. This is not an official OpenAI integration, and the runtime can change with any OpenAI update.
 
 ## Download and install
 
@@ -75,8 +75,8 @@ On macOS, open the disk image and drag CodexUse into Applications. If macOS repo
 | --- | :---: | :---: | :---: |
 | Separate accounts, each in its own Codex home | ✓ | ✓ | ✓ |
 | ChatGPT Web and custom-model accounts | ✓ | ✓ | ✓ |
-| Headroom, refill timers, History, Account Pool, Cloud Sync | ✓ | ✓ | ✓ |
-| One Codex window per account, Auto-roll, Telegram | ✓ | | |
+| Headroom, refill timers, Account Pool, Cloud Sync | ✓ | ✓ | ✓ |
+| One Codex window per account, Find task, Auto-roll | ✓ | | |
 | Computer Use for agents | ✓ | | |
 
 The features marked macOS only drive OpenAI's Codex app or ChatGPT Desktop for Mac. The separate [CLI](https://codexuse.com/docs/cli/) runs on all three platforms with `npm install -g codexuse-cli`; it does not have every desktop feature.
@@ -87,7 +87,7 @@ OpenAI accounts sign in with the Codex CLI OAuth flow and need no OpenAI API key
 
 Try every app feature for 7 days. After that, features lock until a Pro license is activated. Nothing is deleted, and there is no permanent free tier.
 
-Pro is a one-time lifetime license for up to 5 computers in any mix of macOS, Windows, and Linux: $39 regular price, currently $19.50 with the code SUMMER50. There is a 30-day refund window. Account quotas and provider charges stay separate.
+Pro is a one-time lifetime license for up to 5 computers in any mix of macOS, Windows, and Linux: $39 regular price, currently $19.50 with the code CODEXUSE50. There is a 30-day refund window. Account quotas and provider charges stay separate.
 
 Buy inside CodexUse to activate automatically. If you buy on the website, enter the license key from your Gumroad receipt in CodexUse. If you already paid, do not buy again.
 

@@ -1,0 +1,95 @@
+name: Publish CLI
+
+# CodexUse's release script (scripts/release-local.js publish-cli) packs
+# codexuse-cli on the release Mac, puts the tarball on the draft release
+# cli-v<version> here, and starts this workflow. It publishes that exact file
+# with npm trusted publishing (OIDC), so no npm token exists anywhere. The
+# trusted publisher of codexuse-cli on npmjs.com names this file: rename both
+# together.
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: codexuse-cli version, without a v prefix
+        required: true
+        type: string
+      integrity:
+        description: sha512 integrity of the tarball the release Mac packed
+        required: true
+        type: string
+      dist_tag:
+        description: npm dist-tag the version gets
+        required: false
+        default: latest
+        type: string
+      dry_run:
+        description: Run npm publish --dry-run, which still signs in through OIDC
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write # a draft release and its files are visible only with write access
+  id-token: write # npm trusted publishing
+
+concurrency:
+  group: publish-cli
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      VERSION: ${{ inputs.version }}
+      INTEGRITY: ${{ inputs.integrity }}
+      DIST_TAG: ${{ inputs.dist_tag }}
+      DRY_RUN: ${{ inputs.dry_run }}
+    steps:
+      - name: Check the inputs
+        run: |
+          if ! [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+            echo "version must look like 1.2.3 or 1.2.3-beta.1, got $VERSION" >&2
+            exit 1
+          fi
+          if ! [[ "$INTEGRITY" =~ ^sha512-[A-Za-z0-9+/]+=*$ ]]; then
+            echo "integrity must be sha512-<base64>, got $INTEGRITY" >&2
+            exit 1
+          fi
+      # npm 12 needs Node ^22.22.2, ^24.15.0 or 26+.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - name: Download the tarball from draft cli-v${{ inputs.version }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release download "cli-v$VERSION" --repo "$GITHUB_REPOSITORY" --pattern "codexuse-cli-$VERSION.tgz"
+      - name: Check it is the tarball the release Mac packed
+        run: |
+          tarball="codexuse-cli-$VERSION.tgz"
+          actual="sha512-$(openssl dgst -sha512 -binary "$tarball" | base64 -w0)"
+          if [ "$actual" != "$INTEGRITY" ]; then
+            echo "$tarball has $actual, expected $INTEGRITY" >&2
+            exit 1
+          fi
+          manifest="$(tar -xzOf "$tarball" package/package.json | jq -r '.name + "@" + .version')"
+          if [ "$manifest" != "codexuse-cli@$VERSION" ]; then
+            echo "$tarball holds $manifest, expected codexuse-cli@$VERSION" >&2
+            exit 1
+          fi
+      # Provenance stays off: this job publishes a tarball built elsewhere, so a
+      # build attestation from it would claim a build that did not happen here.
+      # Verbose logging shows the oidc lines, which say why a sign-in failed.
+      # A real publish fails without a sign-in; a dry run only warns, so it
+      # checks for the sign-in itself.
+      - name: Publish with npm trusted publishing
+        shell: bash
+        env:
+          NPM_CONFIG_PROVENANCE: "false"
+        run: |
+          npx --yes npm@12.2.3 publish "./codexuse-cli-$VERSION.tgz" \
+            --tag "$DIST_TAG" --loglevel verbose ${{ inputs.dry_run && '--dry-run' || '' }} 2>&1 | tee npm-publish.log
+          if [ "$DRY_RUN" = "true" ] && ! grep -q "oidc Successfully retrieved and set token" npm-publish.log; then
+            echo "npm did not sign in through trusted publishing; the oidc lines above say why." >&2
+            exit 1
+          fi

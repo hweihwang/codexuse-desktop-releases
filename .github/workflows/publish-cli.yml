@@ -19,9 +19,9 @@ on:
         required: true
         type: string
       dist_tag:
-        description: npm dist-tag the version gets
+        description: npm dist-tag for a test version; empty publishes as latest
         required: false
-        default: latest
+        default: ""
         type: string
       dry_run:
         description: Run npm publish --dry-run, which still signs in through OIDC
@@ -87,8 +87,11 @@ jobs:
         env:
           NPM_CONFIG_PROVENANCE: "false"
         run: |
-          npx --yes npm@12.2.3 publish "./codexuse-cli-$VERSION.tgz" \
-            --tag "$DIST_TAG" --loglevel verbose ${{ inputs.dry_run && '--dry-run' || '' }} 2>&1 | tee npm-publish.log
+          # Without --tag, npm refuses a prerelease or a version below latest.
+          args=("./codexuse-cli-$VERSION.tgz" --loglevel verbose)
+          if [ -n "$DIST_TAG" ]; then args+=(--tag "$DIST_TAG"); fi
+          if [ "$DRY_RUN" = "true" ]; then args+=(--dry-run); fi
+          npx --yes npm@12.2.3 publish "${args[@]}" 2>&1 | tee npm-publish.log
           if [ "$DRY_RUN" = "true" ] && ! grep -q "oidc Successfully retrieved and set token" npm-publish.log; then
             echo "npm did not sign in through trusted publishing; the oidc lines above say why." >&2
             exit 1
